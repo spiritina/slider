@@ -104,7 +104,7 @@ export class Gallery {
         this.drag = new DragEvent(this.selector)
         this.controls.addEventListener('click', (e)=>{
             if(e.target.dataset.slide){
-            this.goToSlide(e.target.dataset.slide)
+            this.goToSlide(+e.target.dataset.slide)
             }
         } )
     }

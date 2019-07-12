@@ -7,7 +7,9 @@ const gallerySettings = {
     drag: true,
     callbacks: {
         beforeCreate () { console.log('created') },
-        onSLideChange () { console.log('chemged') }
+        onSLideChange () { console.log('chemged');
+        console.log(this.activeSlide.value);
+     }
     },
     keyControl: true
 }
