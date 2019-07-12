@@ -3,12 +3,27 @@ export class Gallery {
         this.params = obj;
         this.slider = document.querySelector(obj.selector);
         this.slides = this.slider.querySelectorAll(obj.itemSelector);
+
+        if (obj.callbacks){
+           
+            this.callbacks = obj.callbacks;
+            console.log(this.callbacks);
+            for (let funct in this.callbacks){
+                this.callbacks[funct] = this.callbacks[funct].bind(this);
+
+            }
+            console.log(this.callbacks);
+    }
+
+    if (this.callbacks.beforeCreate){this.callbacks.beforeCreate()};
         if(obj.interval){this.interval = obj.interval}else{this.interval = 2000};
         if(obj.autoplay != null){this.autoplay = obj.autoplay}else{this.autoplay = true};
         if(obj.drag != null){this.draggable = obj.drag}else{this.draggable = false};
         if(obj.controls != null){this.controlsOn = obj.controls}else{this.controlsOn = true};
         if(obj.arrows != null){this.arrowsOn = obj.arrows}else{this.arrowsOn = true};
         if(obj.keyControl != null){this.keyControlOn = obj.keyControl}else{this.keyControlOn = false};
+
+        
 
         this.slider.style.overflow = 'hidden';
         this.slider.style.position = 'relative';
@@ -18,7 +33,9 @@ export class Gallery {
         window.addEventListener('resize', ()=>{
             this.slider.style.height = screen.height/screen.width*this.slider.clientWidth+'px';
         })
-        this.activeSlide = 0;
+        this.activeSlide = {};
+        this.activeSlide.value = 0;
+        if(this.callbacks.onSLideChange){this.activeSlide.onSLideChange = this.callbacks.onSLideChange}
         this.slides[0].classList.add('active');
         this.slideNext = this.slideNext.bind(this);
         this.slidePrev = this.slidePrev.bind(this);
@@ -127,20 +144,23 @@ export class Gallery {
 
 
     slideNext (){
-        if(this.activeSlide<this.slides.length-1){
-        this.activeSlide++;
-        this.itemOutput.style.transform = `translateX(${-100*this.activeSlide/this.slides.length}%)`}
+        if(this.activeSlide.value<this.slides.length-1){
+        this.activeSlide.value++;
+        if(this.callbacks.onSLideChange){this.activeSlide.onSLideChange()}
+        this.itemOutput.style.transform = `translateX(${-100*this.activeSlide.value/this.slides.length}%)`}
     }
 
     slidePrev() {
-        if(this.activeSlide>0){
-            this.activeSlide--;
-            this.itemOutput.style.transform = `translateX(${-100*this.activeSlide/this.slides.length}%)`}
+        if(this.activeSlide.value>0){
+            this.activeSlide.value--;
+            if(this.callbacks.onSLideChange){this.activeSlide.onSLideChange()}
+            this.itemOutput.style.transform = `translateX(${-100*this.activeSlide.value/this.slides.length}%)`}
     }
 
     goToSlide(index) {
-        this.activeSlide = index;
-        this.itemOutput.style.transform = `translateX(${-100*this.activeSlide/this.slides.length}%)`
+        this.activeSlide.value = index;
+        if(this.callbacks.onSLideChange){this.activeSlide.onSLideChange()}
+        this.itemOutput.style.transform = `translateX(${-100*this.activeSlide.value/this.slides.length}%)`
     }
 
     destroy() {
@@ -163,9 +183,9 @@ export class Gallery {
                     let touch = e;
                     newX = touch.pageX;
                     delta = x-newX;
-                    if((delta>0&&this.activeSlide<this.slides.length-1)||(delta<0&&this.activeSlide>0)){
+                    if((delta>0&&this.activeSlide.value<this.slides.length-1)||(delta<0&&this.activeSlide.value>0)){
                         this.itemOutput.style.transition = 'none';
-                        this.itemOutput.style.transform = `translateX(${-100*this.activeSlide/this.slides.length-delta*100/(this.slider.clientWidth*this.slides.length)}%)`
+                        this.itemOutput.style.transform = `translateX(${-100*this.activeSlide.value/this.slides.length-delta*100/(this.slider.clientWidth*this.slides.length)}%)`
                                     }
                     }
             });
@@ -184,7 +204,7 @@ export class Gallery {
                 e.preventDefault();
                 if(started){
                 this.itemOutput.style.transition = 'all 1s ease-in-out';
-                if (Math.abs(delta)>50){delta>0?this.slideNext():this.slidePrev()}else{this.goToSlide(this.activeSlide)}
+                if (Math.abs(delta)>50){delta>0?this.slideNext():this.slidePrev()}else{this.goToSlide(this.activeSlide.value)}
                 started = false;
                 }
      
@@ -201,12 +221,12 @@ export class Gallery {
             this.autoplayIterval = setInterval(()=>{
                 if(this.autoplayDirection == 1){
                     this.slideNext();
-                    if (this.activeSlide==this.slides.length-1){
+                    if (this.activeSlide.value==this.slides.length-1){
                         this.autoplayDirection = -1
                     }
                 }else{
                     this.slidePrev();
-                    if (this.activeSlide==0){
+                    if (this.activeSlide.value==0){
                         this.autoplayDirection = 1;
                     }
                 }
