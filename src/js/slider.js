@@ -61,14 +61,13 @@ export class Gallery {
         for (let i=0; i < this.slides.length; i++){
             this.slides[i].style.width = (100/this.slides.length)+'%';
             this.slides[i].classList.add('slide-item');
-            
+            if(this.slides[i].querySelector('img')){
             let img = this.slides[i].querySelector('img');
             let src = img.getAttribute('src');
             this.slides[i].style.backgroundImage = `url('${src}') `;
             this.slides[i].style.backgroundSize = 'cover';
             this.slides[i].style.backgroundPosition = 'center';
-            img.remove();
-            
+            img.remove();};           
             if (this.controlsOn){
                 let controlElem = document.createElement('div');
                 controlElem.classList.add('control-element');
