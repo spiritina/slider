@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Slider</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="logo">
+                    <img src="images/logo.png" alt="My logo">
+                </div>
+
+                <div class="nav">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="main-menu-item">Main</a></li>
+                        <li><a href="docs.html" class="main-menu-item">Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main> 
+            <h2>Parametrs</h2>
+            <article id='autoplay'>
+                <h3>Autoplay</h3>
+                <p><b>Parametr at settings:</b> autoplay: boolean,</p>
+                <p><b>Autosetting:</b> true,</p>
+                <p><b>Description:</b> if true, autostarts slides changing in foreward and then in backward direction.</p>
+            </article>
+            <article id='arrows'>
+                <h3>Arrows</h3>
+                <p><b>Parametr at settings:</b> arrows: boolean,</p>
+                <p><b>Autosetting:</b> true,</p>
+                <p><b>Description:</b> if true, unabled the left and right arrows.</p>
+            </article>
+            <article id='controls'>
+                <h3>Dots</h3>
+                <p><b>Parametr at settings:</b> controls: boolean,</p>
+                <p><b>Autosetting:</b> true,</p>
+                <p><b>Description:</b> if true, unabled the dots in the bottom of the slider.</p>
+            </article>
+            <article id='draggable'>
+                <h3>Draggable</h3>
+                <p><b>Parametr at settings:</b> draggable: boolean,</p>
+                <p><b>Autosetting:</b> false,</p>
+                <p><b>Description:</b> if true, unabled changing the slides by dragging them by mouse.</p>
+            </article>
+            <article id='keyControl'>
+                <h3>Key Control</h3>
+                <p><b>Parametr at settings:</b> keyControls: boolean,</p>
+                <p><b>Autosetting:</b> false,</p>
+                <p><b>Description:</b> if true, unabled changing the slides using arrows keys on the keyboard.</p>
+            </article>
+            <article id='interval'>
+                <h3>Interval</h3>
+                <p><b>Parametr at settings:</b> interval: integer,</p>
+                <p><b>Autosetting:</b> 2000,</p>
+                <p><b>Description:</b> time interval in miliseconds between slide changing during autoplaying.</p>
+            </article>
+            <h2>Methods</h2>
+            <article id='autoplayStart'>
+                <h3>Autoplay Start</h3>
+                <p><b>Function: </b> yourGalleryObject.autoplayStart()</p>
+                <p>To start slides autoplaying.</p>
+            </article>
+            <article id='autoplayStop'>
+                <h3>Autoplay Stop</h3>
+                <p><b>Function: </b> yourGalleryObject.autoplayStop()</p>
+                <p><b>Description:</b>To stop slides autoplaying.</p>
+            </article>
+            <article id='goToSlide'>
+                <h3>Go to chosen slide</h3>
+                <p><b>Function: </b> yourGalleryObject.goToSlide(int)</p>
+                <p><b>Description:</b>To change the slide to chosen, numeration starts from 0.</p>
+            </article>
+            <article id='init'>
+                <h3>Initialize</h3>
+                <p>yourGallery = new Gallery(settings)</p>
+                <p><b>Function: </b> yourGalleryObject.goToSlide(int)</p>    
+                <p><b>Description:</b>To change the slide to chosen, numeration starts from 0. Settings are optional.</p>
+            </article>
+            <article id='slideNext'>
+                <h3>To the next slide</h3>
+                <p><b>Function: </b> yourGalleryObject.slideNext()</p>
+                <p><b>Description:</b>To change to the next slide, if it's posible. No loop changing.</p>
+            </article>
+            <article id='slidePrev'>
+                <h3>To the previous slide</h3>
+                <p><b>Function: </b> yourGalleryObject.slidePrev()</p>
+                <p><b>Description:</b>To change to the previous slide, if it's posible. No loop changing.</p>
+            </article>
+
+        </main>
+        <aside>
+            <ol class="side-menu">
+                <li>
+                    Parametrs
+                    <ul>
+                        <li><a class="side-menu-item active" href="#autoplay">Autoplay</a></li>
+                        <li><a class="side-menu-item" href="#arrows">Arrows</a></li>
+                        <li><a class="side-menu-item" href="#controls">Dots</a></li>
+                        <li><a class="side-menu-item" href="#draggable">Draggable</a></li>
+                        <li><a class="side-menu-item" href="#keyControl">Key Control</a></li>
+                        <li><a class="side-menu-item" href="#interval">Interval</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Methods
+                    <ul>
+                        <li><a class="side-menu-item" href="#autoplayStart">Autoplay start</a></li> 
+                        <li><a class="side-menu-item" href="#autoplayStop">Autoplay stop</a></li>
+                        <li><a class="side-menu-item" href="#goToSlide">Go to chosen slide</a></li>
+                        <li><a class="side-menu-item" href="#init">Initialize</a></li>
+                        <li><a class="side-menu-item" href="#slideNext">To next slide</a></li>
+                        <li><a class="side-menu-item" href="#slidePrev">To previous slide</a></li>
+                    </ul>
+                </li>
+            </ol>     
+        </aside>
+    </div>
+        
+        
+    
+    
+    <script src="docs.js"></script>
+    
+</body>
+</html>

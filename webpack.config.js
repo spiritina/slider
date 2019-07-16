@@ -5,7 +5,8 @@ module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
     entry: {
-        'bundle': './src/js/index.js'
+        'bundle': './src/js/index.js',
+        'docs': './src/js/docs.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

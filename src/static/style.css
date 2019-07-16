@@ -1,8 +1,58 @@
+body{
+    color: #424242;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #fefefe;
+}
+main{
+    width: 70%;
+}
+header{
+    background-color: #fefefe;
+    width:100%;
+}
+aside{
+    box-sizing: border-box;
+    padding-left:  15px;
+    width: 30%;
+}
 .container{
     margin: 0 auto;
     width: 90%;
     max-width: 1200px;
+    display: flex;
 }
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    width: 15%;
+    min-width: 70px;
+    height: auto;
+}
+.logo img{
+    width: 100%;
+}
+.main-menu{
+    list-style: none;
+}
+.main-menu> li{
+    display: inline-block;
+    margin: 0 0 0 10px;
+}
+.main-menu-item{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #e4e4e4;
+    color: #424242;
+    text-decoration: none;
+}
+.main-menu-item:hover{
+    background-color: #d4d4d4;
+}
+
 .item-output{
     height: 100%;
     position: absolute;
@@ -66,4 +116,62 @@
     display: inline-block;
     margin: 10px 5px;
     cursor: pointer;
+}
+input{
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+input[type='submit']{
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: 0;
+    cursor: pointer;
+}
+label{
+    text-transform: capitalize;
+}
+.side-menu-item{
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 10px;
+    white-space: nowrap;
+    display: block;
+    font-size: 14px;
+}
+.side-menu-item:hover,
+.side-menu-item.active{
+    background-color: #e4e4e4;
+}
+.side-menu{
+
+}
+.side-menu>li>ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+article{
+    border-bottom: 1px solid #a4a4a4; 
+}
+@media only screen and (min-height: 580px){
+    header{
+        position: fixed;
+        top:0;
+        left: 0;
+       }
+    main{
+        margin-block-start: 145px;
+    }
+    aside{
+        position: fixed;
+        margin-block-start: 145px;
+        top:0;
+        right:0;
+    }
 }

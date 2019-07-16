@@ -8,8 +8,25 @@
     <title>Slider</title>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="logo">
+                    <img src="images/logo.png" alt="My logo">
+                </div>
+
+                <div class="nav">
+                    <ul class="main-menu">
+                        <li><a href="index.html" class="main-menu-item">Main</a></li>
+                        <li><a href="docs.html" class="main-menu-item">Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="container">
-            <div id="gallery">
+        <main>    
+        <div id="gallery">
                 <div class="gallery-item">
                     <img src="images/Virtue_Moir_2009_2010 FD.jpg" alt="Tessa Virtue and Scott Moir, 2010 FD">
                 </div>
@@ -20,6 +37,33 @@
                     <img src="images/Virtue_Moir_2017_2018 SD.jpg" alt="Tessa Virtue and Scott Moir, 2018 SD">
                 </div>
             </div>
+        </main>
+        <aside>
+            <form id="sliderControl">
+                <div class="row"> 
+                    <input type="checkbox" name="arrows" id="arrows"><label for="arrows">Arrows control</label>  
+                </div>
+                <div class="row">
+                    <input type="checkbox" name="controls" id="controls" ><label for="controls">Dots</label>
+                </div>
+                <div class="row">
+                    <input type="checkbox" name="autoplay" id="autoplay" ><label for="autoplay">Autoplay</label>
+                </div>
+                <div class="row">
+                    <input type="checkbox" name="keyControl" id="keyControl" ><label for="keyControl">Key Control</label>
+                </div>
+                <div class="row">
+                    <input type="checkbox" name="draggable" id="draggable" ><label for="draggable">draggable</label>
+                </div>
+                <div class="row">
+                    <input type="number" name="interval" id="interval" value="3000"> <label for="interval">Time interval</label>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Save">
+                </div>
+          
+            </form>
+        </aside>
     </div>
     
     
