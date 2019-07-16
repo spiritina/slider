@@ -16,7 +16,7 @@ window.addEventListener('scroll', (e) => {
     let articles = document.querySelectorAll('article');
     for(let i=0; i < articles.length; i++){
         let articleTop = articles[i].getClientRects()[0].top;
-       if(articleTop >0 && articleTop <50){
+       if(articleTop >145 && articleTop <195){
            let id = articles[i].getAttribute('id');
            let menuItem = document.querySelector(`[href='#${id}']`);
            deactivetePreviousActive();

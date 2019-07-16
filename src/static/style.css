@@ -122,7 +122,9 @@ input{
     cursor: pointer;
     padding: 10px;
     border-radius: 10px;
+    
 }
+input[type='number']{width: 30%;}
 input[type='submit']{
     background-color: blue;
     color: white;
@@ -172,6 +174,8 @@ article{
         position: fixed;
         margin-block-start: 145px;
         top:0;
-        right:0;
+        right:5%;
+        max-width: 250px;
+
     }
 }
