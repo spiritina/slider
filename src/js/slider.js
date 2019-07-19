@@ -6,6 +6,7 @@ export class Gallery {
             controls: true,
             draggable: false,
             keyControl: false,
+            keyControlUnable: false,
             interval: 2000
         };
         for (let key in obj){
@@ -200,6 +201,12 @@ export class Gallery {
             this.left.remove();
             this.right.remove();
         }
+        if (this.settings.keyControl){
+            this.slider.removeEventListener('mouseout', handlerMouseOut);
+            
+            this.slider.removeEventListener('mouseover', handlerMouseIn);
+            document.body.removeEventListener('click', handlerClick);  
+        }
         this.slider.removeEventListener('touchstart', this.handlerTouchStart);
         this.slider.removeEventListener('touchmove', this.handlerTouchMove);
         this.slider.removeEventListener('touchend', this.handlerTouchEnd);
@@ -250,7 +257,7 @@ export class Gallery {
                 this.itemOutput.style.transition = 'all 1s ease-in-out';
                 if (Math.abs(delta) > 50) { delta > 0 ? this.slideNext() : this.slidePrev() }
                 started = false;
-                if(this.autoplay)this.autoplayStart();
+                if(this.settings.autoplay)this.autoplayStart();
             }
             this.handlerMouseOut = (e) => {
                 e.preventDefault();
@@ -292,21 +299,44 @@ export class Gallery {
     }
 
     keyControl() {
-        this.handlerKeyControl = (e) => {
+        
+        let handlerKeyControl = (e) => {
+            console.log(this.settings.keyControlUnable);
+            console.log(e);
+           if(this.settings.keyControlUnable){ 
             if (e.keyCode == 39) { this.slideNext() };
             if (e.keyCode == 37) { this.slidePrev() };
-           
-        }
-        document.body.addEventListener('keydown', this.handlerKeyControl);
+            
+        }}
+        document.body.addEventListener('keydown', handlerKeyControl)
+        
     }
 
 
     init() {
-        
+        console.log(this.settings)
         this.getSettings();
         this.setStyles();
         if (this.settings.arrows) this.addArrows();
-        if (this.settings.keyControl) this.keyControl();
+        if (this.settings.keyControl) {
+            let handlerMouseIn = (e) =>{
+                this.settings.keyControlUnable = true;
+            }
+            let handlerMouseOut = (e) =>{
+                this.settings.keyControlUnable = false;
+            }
+            
+            let handlerClick = (e) => {
+            if(e.target.closest(this.settings.selector)){
+                this.settings.keyControlUnable = true;
+            } else (this.keyControlUnable = false);
+            };
+            this.slider.addEventListener('mouseout', handlerMouseOut);
+            
+            this.slider.addEventListener('mouseover', handlerMouseIn);
+            document.body.addEventListener('click', handlerClick);  
+            this.keyControl();
+        }
         if (this.settings.draggable) this.drag();
         if (this.settings.autoplay) this.autoplayStart();
       
